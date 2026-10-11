@@ -44,7 +44,7 @@ git clone https://github.com/alpotap/run-planner .claude/skills/plan-run
 ## Requirements
 
 - **Claude Code** (CLI or desktop app), signed in
-- **PowerShell**: Windows PowerShell 5.1 or PowerShell 7 (`pwsh`) on Windows; `pwsh` on macOS/Linux
+- **PowerShell**: Windows PowerShell 5.1 or PowerShell 7 (`pwsh`) on Windows. macOS and Linux are not supported: the runner is PowerShell scripts only.
 - **Git**: The target project must be a git repository
 
 ---

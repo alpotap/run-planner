@@ -44,14 +44,14 @@ Planning never implements tasks. Running is a separate, explicit step.
 
 - Install: `claude plugin marketplace add https://github.com/alpotap/run-planner` then `claude plugin install run-planner@run-planner`
 - Smoke test: in a git project, ask Claude to "perform planning on this project" with a small requirement, then run `tools/run-planner/run_plan.ps1` on one S task.
-- Known requirement: Windows PowerShell 5.1 or PowerShell 7 on Windows; `pwsh` on macOS/Linux. (macOS/Linux is not verified in this repo.)
+- Requirement: Windows PowerShell 5.1 or PowerShell 7 on Windows. Windows only: macOS and Linux are not supported, because the runner is PowerShell scripts only.
 
 ## Gaps to close before submitting
 
 - [ ] **Scope the plugin to its folder.** The official layout puts each plugin in its own folder with `.claude-plugin/plugin.json`. This repo has the plugin at the root (`source: "./"`). Ask the reviewers, or move the plugin into a subfolder.
 - [x] **Add `homepage` and `repository` to `plugin.json`.** Done: homepage, repository and license set.
 - [x] **Align descriptions.** `plugin.json` and the marketplace plugin entry now use the same description.
-- [ ] **Verify macOS/Linux** or state that only Windows is supported.
+- [x] **Platform support.** Windows only. Stated in the requirements and the README.
 - [ ] **Confirm the git behaviour** described under "Permissions and risk disclosure".
 - [ ] **Add a plugin README** if the form requires one. The root README covers the same ground but is written for GitHub.
 - [ ] **Run the installed plugin** from the marketplace once end to end, not only from the repo.
