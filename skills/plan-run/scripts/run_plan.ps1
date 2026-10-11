@@ -32,7 +32,7 @@ $runsDir = Join-Path $Repo "runs"
 
 # Models and effort per alias. runs/runner.json may override any of them.
 $models = @{ "haiku" = "claude-haiku-5-5"; "sonnet" = "claude-sonnet-5-5"; "opus" = "claude-opus-5-5" }
-$efforts = @{ "haiku" = ""; "sonnet" = "low"; "opus" = "" }
+$efforts = @{ "haiku" = "medium"; "sonnet" = "low"; "opus" = "" }
 $defaultAlias = "sonnet"
 $cfgPath = Join-Path $runsDir "runner.json"
 if (Test-Path $cfgPath) {

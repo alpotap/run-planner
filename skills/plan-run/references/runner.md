@@ -66,7 +66,7 @@ Older plans whose tasks write their own rows still work: a closed row also count
   "pathAdd": ["C:\\Program Files\\Docker\\Docker\\resources\\bin"],
   "defaultModel": "sonnet",
   "models": { "haiku": "claude-haiku-5-5", "sonnet": "claude-sonnet-5-5", "opus": "claude-opus-5-5" },
-  "effort": { "haiku": "", "sonnet": "low", "opus": "" },
+  "effort": { "haiku": "medium", "sonnet": "low", "opus": "" },
   "tools": ["Bash", "PowerShell", "Read", "Edit", "Write", "Grep", "Glob"]
 }
 ```

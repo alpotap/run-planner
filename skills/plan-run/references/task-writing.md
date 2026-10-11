@@ -35,7 +35,7 @@ The runner sends the whole task section to the session, with the plan's `## Rule
 - Metadata goes in bold `**Key: value**` pairs, on one line or several, before the first bullet:
   - `**Size: S|M|L**`, required.
   - `**Model: haiku|sonnet|opus**`, required (see [Choosing the model](#choosing-the-model)).
-  - `**Effort: low|medium|high**`, optional. It overrides the model's default effort from `runs/runner.json` (Sonnet: low; Haiku and Opus: the model's own default). Use `**Effort: medium**` on a Sonnet task that is tricky but does not need Opus.
+  - `**Effort: low|medium|high**`, optional. It overrides the model's default effort from `runs/runner.json` (Sonnet: low; Haiku: medium; Opus: the model's own default). Use `**Effort: medium**` on a Sonnet task that is tricky but does not need Opus.
   - `**Tools: default**`, optional. This gives the session every built-in tool instead of the lean set (Bash, PowerShell, Read, Edit, Write, Grep, Glob). Only for a task that really needs another tool, for example a web fetch. Each extra tool definition is re-sent on every turn.
 
 ## Sizes
@@ -56,12 +56,13 @@ The runner sends the whole task section to the session, with the plan's `## Rule
 
 | Model                          | Use it for                                                                                                                                                                                                                                                                                   | Default effort       |
 | ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
-| **haiku** (Haiku 5.5)          | S tasks whose instructions are complete: the exact file, an anchor, and the exact new text or a mechanical rule. CSS changes, labels and strings, config values, renames, adding an entry to a list or registry, updating a test table to new values, a `.gitignore`. No design judgement left. | model default        |
+| **haiku** (Haiku 5.5)          | S tasks and small M tasks whose plan spells out every file, the function to change and the expected result: the exact file, an anchor, and the exact new text or a mechanical rule. Up to about three files and one Verify command. CSS changes, labels and strings, config values, renames, adding an entry to a list or registry, updating a test table, a `.gitignore`, a single-file route or UI change with its test. No design judgement left. | **medium**           |
 | **sonnet** (Sonnet 5.5)        | The default. M and most L tasks: ordinary features, migrations, tests, documentation text, the gate, the walkthrough.                                                                                                                                                                    | **low**              |
 | **opus** (Opus 5.5)            | Security-critical work (auth, permissions, row-level security, tokens, secrets, tenant isolation, payments, anything with an abuse surface); cross-cutting design where the plan leaves real judgement; **the adversary check**.                                                          | model default        |
 
 - Sonnet runs at **low** effort by default. It uses about half the tokens of high effort for a small loss in quality. That trade is right for well-specified tasks, and the planner's job is to make every task well specified.
 - When in doubt between Haiku and Sonnet, ask: "Could a careful junior developer do this from the task text alone, without opening anything but the named lines?" Yes means Haiku.
+- Haiku is weaker on long chains of steps. Keep these on **Sonnet**, even when each step is simple: a migration that touches several files, rebuilding containers, browser walkthroughs, the test gate, and screenshot tooling. A task with more than about three files or more than one Verify command is Sonnet's.
 - When in doubt between Sonnet and Opus, ask: "Would a subtle mistake here leak data, let someone in, or corrupt stored data?" Yes means Opus.
 
 ## Haiku-ready tasks

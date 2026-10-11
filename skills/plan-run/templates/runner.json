@@ -8,7 +8,7 @@
     "opus": "claude-opus-5-5"
   },
   "effort": {
-    "haiku": "",
+    "haiku": "medium",
     "sonnet": "low",
     "opus": ""
   },
