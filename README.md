@@ -61,6 +61,7 @@ Perform planning on this project. Requirements:
 ```
 
 **First time in a project:** Claude runs the installer automatically:
+
 - Creates `tools/run-planner/` with runner scripts
 - Creates `runs/runner.json` and `runs/PROJECT.md` from templates
 - Adds `.runlogs/` to `.gitignore`
@@ -68,6 +69,7 @@ Perform planning on this project. Requirements:
 - Asks you for anything it couldn't prove (recorded as assumptions)
 
 **Planning process:**
+
 1. **Findings** — root causes in code (`file:line` + anchor strings)
 2. **Problems nobody mentioned** — tech debt discovered during research
 3. **Owner decisions** (D1, D2, ...) — D1 is always *"Update documentation when all phases are complete? Y/n"*
@@ -103,6 +105,7 @@ If a task fails 3 times, the run stops. Re-run the same command to continue from
 ### 3. Review
 
 At the end, the runner prints:
+
 - Blocked tasks
 - Tasks marked `ATTENDED` (for your review)
 - Adversary report (`runs/<run>/ADVERSARY.md`)
@@ -144,14 +147,14 @@ Projects keep their `tools/run-planner/` and `runs/`. They still run without the
 
 ## Customising
 
-| What | Where |
-|------|-------|
-| Model IDs (next generation) | `runs/runner.json` → `models`, or defaults in `scripts/run_plan.ps1` |
-| Effort per model (Sonnet = `low`) | `runs/runner.json` → `effort`; per-task with `**Effort: medium**` |
-| Sibling repos a task may edit | `runs/runner.json` → `addDirs` (relative paths, e.g., `"../engine"`) |
-| Tools installed but off `PATH` | `runs/runner.json` → `pathAdd` |
-| Project rules, commands, known failures | `runs/PROJECT.md` |
-| Planning process itself | `plugins/run-planner/skills/plan-run/SKILL.md` and `references/` |
+| What                                    | Where                                                                |
+| --------------------------------------- | -------------------------------------------------------------------- |
+| Model IDs (next generation)             | `runs/runner.json` → `models`, or defaults in `scripts/run_plan.ps1` |
+| Effort per model (Sonnet = `low`)       | `runs/runner.json` → `effort`; per-task with `**Effort: medium**`    |
+| Sibling repos a task may edit           | `runs/runner.json` → `addDirs` (relative paths, e.g., `"../engine"`) |
+| Tools installed but off `PATH`          | `runs/runner.json` → `pathAdd`                                       |
+| Project rules, commands, known failures | `runs/PROJECT.md`                                                    |
+| Planning process itself                 | `plugins/run-planner/skills/plan-run/SKILL.md` and `references/`     |
 
 ---
 
