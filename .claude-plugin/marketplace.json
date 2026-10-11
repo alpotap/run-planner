@@ -1,12 +1,12 @@
 {
   "name": "run-planner-local",
-  "description": "Local marketplace holding the run-planner plugin.",
+  "description": "Takes your idea and codes it for days without human involvement. Best for pro plan that has limits and yo want to let it run for days instead of pressing continue every 5 hours.",
   "owner": { "name": "alpotap" },
   "plugins": [
     {
       "name": "run-planner",
       "source": "./",
-      "description": "Plan and run unattended multi-task runs in any project."
+      "description": "Takes your idea and codes it for days without human involvement. Best for pro plan that has limits and yo want to let it run for days instead of pressing continue every 5 hours."
     }
   ]
 }
