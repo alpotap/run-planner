@@ -1,6 +1,9 @@
 {
   "name": "run-planner",
   "version": "1.0.0",
-  "description": "Plans a project's next unattended run (findings, owner decisions D1, D2 ..., phased tasks sized and assigned to Haiku, Sonnet or Opus) and installs the PowerShell runner that executes it task by task in fresh headless sessions.",
-  "author": { "name": "alpotap" }
+  "description": "Takes your idea and codes it for days without human involvement. Best for pro plan that has limits and you want to let it run for days instead of pressing continue every 5 hours.",
+  "author": { "name": "alpotap" },
+  "homepage": "https://github.com/alpotap/run-planner",
+  "repository": "https://github.com/alpotap/run-planner",
+  "license": "MIT"
 }
