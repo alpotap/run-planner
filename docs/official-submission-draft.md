@@ -6,7 +6,7 @@ Draft for the plugin directory submission form (https://clau.de/plugin-directory
 
 - **Name (slug, immutable once published):** `run-planner`
 - **Display name:** Run Planner
-- **Version:** 1.0.0 (`.claude-plugin/plugin.json`, `skills/plan-run/VERSION`)
+- **Version:** 1.0.0 (`plugins/run-planner/.claude-plugin/plugin.json`, `plugins/run-planner/skills/plan-run/VERSION`)
 - **Author:** alpotap
 - **License:** MIT (`LICENSE`)
 - **Repository:** https://github.com/alpotap/run-planner
@@ -27,7 +27,7 @@ Planning never implements tasks. Running is a separate, explicit step.
 
 ## What the plugin installs and runs
 
-- Skill: `skills/plan-run/` (SKILL.md, references, templates)
+- Skill: `plugins/run-planner/skills/plan-run/` (SKILL.md, references, templates)
 - Scripts copied into the target project's `tools/run-planner/`: `run_plan.ps1`, `run_task.ps1`, `new_run.ps1`, `install.ps1`
 - Headless sessions use the lean tool set in `runs/runner.json` by default: Bash, PowerShell, Read, Edit, Write, Grep, Glob. A task can request more tools with `**Tools: default**`.
 - Models (defaults, overridable in `runs/runner.json`): `claude-haiku-5-5`, `claude-sonnet-5-5`, `claude-opus-5-5`. Effort: Haiku medium, Sonnet low, Opus default.
@@ -48,7 +48,7 @@ Planning never implements tasks. Running is a separate, explicit step.
 
 ## Gaps to close before submitting
 
-- [ ] **Scope the plugin to its folder.** The official layout puts each plugin in its own folder with `.claude-plugin/plugin.json`. This repo has the plugin at the root (`source: "./"`). Ask the reviewers, or move the plugin into a subfolder.
+- [x] **Scope the plugin to its folder.** Done: plugin is in `plugins/run-planner/` with its own `.claude-plugin/plugin.json`; the marketplace points at it.
 - [x] **Add `homepage` and `repository` to `plugin.json`.** Done: homepage, repository and license set.
 - [x] **Align descriptions.** `plugin.json` and the marketplace plugin entry now use the same description.
 - [x] **Platform support.** Windows only. Stated in the requirements and the README.

@@ -27,16 +27,16 @@ claude plugin install run-planner@run-planner
 ### Alternative: User Skills Directory
 
 ```powershell
-# Clone and copy to your user skills
-git clone https://github.com/alpotap/run-planner
-Copy-Item -Recurse .\run-planner "$HOME\.claude\skills\run-planner"
+# Clone, then copy the skill folder to your user skills
+git clone https://github.com/alpotap/run-planner $env:TEMP\run-planner
+Copy-Item -Recurse "$env:TEMP\run-planner\plugins\run-planner\skills\plan-run" "$HOME\.claude\skills\run-planner"
 ```
 
 ### Alternative: Single Project Only
 
-```bash
-# In your project root
-git clone https://github.com/alpotap/run-planner .claude/skills/plan-run
+```powershell
+# In your project root, after cloning as above
+Copy-Item -Recurse "$env:TEMP\run-planner\plugins\run-planner\skills\plan-run" .claude\skills\plan-run
 ```
 
 ---
@@ -124,7 +124,7 @@ claude plugin marketplace update run-planner
 # Replace folder in ~/.claude/skills/run-planner
 ```
 
-Bump `skills/plan-run/VERSION` when scripts change. Next planning session in each project detects the new version and reinstalls `tools/run-planner/`. Never overwrites `runs/runner.json` or `runs/PROJECT.md`.
+Bump `plugins/run-planner/skills/plan-run/VERSION` when scripts change. Next planning session in each project detects the new version and reinstalls `tools/run-planner/`. Never overwrites `runs/runner.json` or `runs/PROJECT.md`.
 
 ---
 
@@ -151,24 +151,29 @@ Projects keep their `tools/run-planner/` and `runs/`. They still run without the
 | Sibling repos a task may edit | `runs/runner.json` → `addDirs` (relative paths, e.g., `"../engine"`) |
 | Tools installed but off `PATH` | `runs/runner.json` → `pathAdd` |
 | Project rules, commands, known failures | `runs/PROJECT.md` |
-| Planning process itself | `skills/plan-run/SKILL.md` and `references/` |
+| Planning process itself | `plugins/run-planner/skills/plan-run/SKILL.md` and `references/` |
 
 ---
 
 ## Repository Structure
 
 ```
-run-planner/
+run-planner/                       # repository = marketplace
 ├── .claude-plugin/
-│   ├── plugin.json         # Plugin manifest
-│   └── marketplace.json    # Local marketplace config
-├── skills/plan-run/
-│   ├── SKILL.md            # Planning process (loads on "perform planning on this project")
-│   ├── VERSION             # Runner version stamped into projects
-│   ├── scripts/            # install.ps1, run_plan.ps1, run_task.ps1, new_run.ps1
-│   ├── templates/          # PROJECT.md, runner.json for new projects
-│   └── references/         # task-writing, closing-phase, plan-format, runner, project-profile, lessons
-└── LICENSE                 # MIT License
+│   └── marketplace.json        # Marketplace config; points at the plugin folder below
+├── plugins/
+│   └── run-planner/            # the plugin
+│       ├── .claude-plugin/
+│       │   └── plugin.json     # Plugin manifest
+│       └── skills/plan-run/
+│           ├── SKILL.md        # Planning process (loads on "perform planning on this project")
+│           ├── VERSION         # Runner version stamped into projects
+│           ├── scripts/        # install.ps1, run_plan.ps1, run_task.ps1, new_run.ps1
+│           ├── templates/      # PROJECT.md, runner.json for new projects
+│           └── references/     # task-writing, closing-phase, plan-format, runner, project-profile, lessons
+├── docs/                       # Notes, including the official directory submission draft
+├── README.md
+└── LICENSE                     # MIT License
 ```
 
 ---
