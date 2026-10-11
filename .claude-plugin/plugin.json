@@ -1,0 +1,6 @@
+{
+  "name": "run-planner",
+  "version": "1.0.0",
+  "description": "Plans a project's next unattended run (findings, owner decisions D1, D2 ..., phased tasks sized and assigned to Haiku, Sonnet or Opus) and installs the PowerShell runner that executes it task by task in fresh headless sessions.",
+  "author": { "name": "alpotap" }
+}

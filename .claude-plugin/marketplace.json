@@ -1,0 +1,12 @@
+{
+  "name": "run-planner-local",
+  "description": "Local marketplace holding the run-planner plugin.",
+  "owner": { "name": "alpotap" },
+  "plugins": [
+    {
+      "name": "run-planner",
+      "source": "./",
+      "description": "Plan and run unattended multi-task runs in any project."
+    }
+  ]
+}
