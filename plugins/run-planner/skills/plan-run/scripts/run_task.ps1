@@ -241,13 +241,13 @@ if ($Unattended) {
 # The last RESULT block in the agent's final reply, or $null.
 function Get-Result([string]$text) {
   if (-not $text) { return $null }
-  $m = [regex]::Matches($text, "(?ms)^\s*\**RESULT:?\**\s*:?\s*\**\s*(done|blocked)\b(.*)$")
+  $m = [regex]::Matches($text, "(?ms)^\s*\x2a{0,}RESULT:?\x2a{0,}\s*:?\s*\x2a{0,}\s*(done|blocked)\b(.*)$")
   if ($m.Count -eq 0) { return $null }
   $last = $m[$m.Count - 1]
   $rest = $last.Groups[2].Value
   $note = ""; $docs = ""
-  if ($rest -match "(?ms)NOTE:\s*(.*?)(?=^\s*\**DOCS:|\z)") { $note = $Matches[1].Trim() }
-  if ($rest -match "(?ms)^\s*\**DOCS:\**\s*(.*)\z") { $docs = $Matches[1].Trim() }
+  if ($rest -match "(?ms)NOTE:\s*(.*?)(?=^\s*\x2a{0,}DOCS:|\z)") { $note = $Matches[1].Trim() }
+  if ($rest -match "(?ms)^\s*\x2a{0,}DOCS:\x2a{0,}\s*(.*)\z") { $docs = $Matches[1].Trim() }
   return [pscustomobject]@{ status = $last.Groups[1].Value.ToLower(); note = $note; docs = $docs }
 }
 

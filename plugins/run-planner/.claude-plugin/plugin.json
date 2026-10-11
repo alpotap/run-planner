@@ -2,8 +2,11 @@
   "name": "run-planner",
   "version": "1.0.0",
   "description": "Takes your idea and codes it for days without human involvement. Best for pro plan that has limits and you want to let it run for days instead of pressing continue every 5 hours.",
-  "author": { "name": "alpotap" },
+  "author": {
+    "name": "alpotap"
+  },
   "homepage": "https://github.com/alpotap/run-planner",
   "repository": "https://github.com/alpotap/run-planner",
-  "license": "MIT"
+  "license": "MIT",
+  "icon": "./.claude-plugin/icon.png"
 }
