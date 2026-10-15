@@ -7,6 +7,7 @@ A **Claude Code plugin** that plans a project's next **unattended run** and runs
 
 - **Planning.** You say "perform planning on this project" and give the requirements. Claude researches the code, writes the findings, asks you the owner decisions (D1, D2, ...), and writes `runs/<NNN-name>/PLAN.md`. Each task is sized S/M/L and assigned to Haiku, Sonnet, or Opus. The plan ends with a regression gate, an adversary check, and (optionally) documentation.
 - **Running.** `tools/run-planner/run_plan.ps1` executes every task in its own fresh headless session, waits out usage limits, writes the ledger, and prints where the tokens went.
+- **Saving** the tools are pre-determined for every task automatically, this reduces the number of tokens per task at about 60%. A Claude pro account can now code more than twice the weekly amount, same quality.
 
 ---
 
