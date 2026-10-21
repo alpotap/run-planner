@@ -64,8 +64,10 @@ runs/
     PLAN.md                    the plan
     PROGRESS.md                that run's ledger, written by the runner
     ADVERSARY.md               written by the adversary check
-tools/run-planner/             run_plan.ps1, run_task.ps1, new_run.ps1, VERSION
+tools/run-planner/             run_plan.ps1, run_task.ps1, new_run.ps1, token_stats.ps1, VERSION
 .runlogs/<NNN>-<name>/         per-task prompt, event stream and usage.csv (gitignored)
+.runlogs/token_statistics.md   token statistics across all runs, with the trend check
+.runlogs/token_history.csv     one snapshot row per run per refresh; append-only
 ```
 
 - **One run, one ledger.** A run's `PROGRESS.md` starts empty and holds only that run's rows.

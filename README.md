@@ -6,7 +6,7 @@
 A **Claude Code plugin** that plans a project's next **unattended run** and runs it.
 
 - **Planning.** You say "perform planning on this project" and give the requirements. Claude researches the code, writes the findings, asks you the owner decisions (D1, D2, ...), and writes `runs/<NNN-name>/PLAN.md`. Each task is sized S/M/L and assigned to Haiku, Sonnet, or Opus. The plan ends with a regression gate, an adversary check, and (optionally) documentation.
-- **Running.** `tools/run-planner/run_plan.ps1` executes every task in its own fresh headless session, waits out usage limits, writes the ledger, and prints where the tokens went.
+- **Running.** `tools/run-planner/run_plan.ps1` executes every task in its own fresh headless session, waits out usage limits, writes the ledger, and prints where the tokens went. At the end it also updates the token statistics (see [Token statistics](#token-statistics)).
 - **Saving** the tools are pre-determined for every task automatically, this reduces the number of tokens per task at about 60%. A Claude pro account can now code more than twice the weekly amount, same quality.
 
 ---
@@ -63,7 +63,7 @@ Perform planning on this project. Requirements:
 
 **First time in a project:** Claude runs the installer automatically:
 
-- Creates `tools/run-planner/` with runner scripts
+- Creates `tools/run-planner/` with runner scripts, including `token_stats.ps1`
 - Creates `runs/runner.json` and `runs/PROJECT.md` from templates
 - Adds `.runlogs/` to `.gitignore`
 - Researches your codebase to fill `PROJECT.md` (test commands, build commands, repo structure, known failures)
@@ -114,6 +114,16 @@ At the end, the runner prints:
 - Cost table: model, minutes, turns, context, cost per task
 
 Full logs in `.runlogs/<run>/` — each task's prompt, event stream, and `usage.csv`.
+
+### Token statistics
+
+After the summary, `run_plan.ps1` runs `tools/run-planner/token_stats.ps1`. It reads every `usage.csv` under `.runlogs/` and:
+
+- regenerates `.runlogs/token_statistics.md`: totals per run, efficiency per run, a trend between consecutive runs, models, and figures per task;
+- appends one snapshot row per run to `.runlogs/token_history.csv`. The history is only ever appended to, so it keeps every refresh;
+- prints any **ABRUPT RISE** or **ABRUPT DROP** line. A change of 50% or more in cost per task, cache read per call or turns per call between two runs is flagged.
+
+It is PowerShell, like the rest of the runner, so it needs nothing beyond what the runner already requires. It never fails a run: if it cannot write, the run's summary says so and the run still finishes. To refresh the statistics without running anything, run `.\tools\run-planner\token_stats.ps1` on its own.
 
 ---
 
@@ -172,7 +182,7 @@ run-planner/                       # repository = marketplace
 │       └── skills/plan-run/
 │           ├── SKILL.md        # Planning process (loads on "perform planning on this project")
 │           ├── VERSION         # Runner version stamped into projects
-│           ├── scripts/        # install.ps1, run_plan.ps1, run_task.ps1, new_run.ps1
+│           ├── scripts/        # install.ps1, run_plan.ps1, run_task.ps1, new_run.ps1, token_stats.ps1
 │           ├── templates/      # PROJECT.md, runner.json for new projects
 │           └── references/     # task-writing, closing-phase, plan-format, runner, project-profile, lessons
 ├── docs/                       # Notes, including the official directory submission draft

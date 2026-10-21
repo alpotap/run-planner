@@ -21,14 +21,15 @@ Plans a project's next unattended run, with phased tasks sized and assigned to H
 run-planner has two parts.
 
 1. **Planning.** A skill (`plan-run`) researches the project, writes findings, asks the owner for decisions (D1, D2, ...), and writes `runs/<NNN-name>/PLAN.md`. Each task is sized S/M/L and assigned to a model. The plan ends with a regression gate and an adversary check.
-2. **Running.** `tools/run-planner/run_plan.ps1` (installed into the project) runs each open task in its own headless `claude` session, waits out usage-limit pauses, records results in a ledger, and reports token use per task.
+2. **Running.** `tools/run-planner/run_plan.ps1` (installed into the project) runs each open task in its own headless `claude` session, waits out usage-limit pauses, records results in a ledger, reports token use per task, and at the end updates token statistics across all runs (`.runlogs/token_statistics.md`, with an append-only `token_history.csv`).
 
 Planning never implements tasks. Running is a separate, explicit step.
 
 ## What the plugin installs and runs
 
 - Skill: `plugins/run-planner/skills/plan-run/` (SKILL.md, references, templates)
-- Scripts copied into the target project's `tools/run-planner/`: `run_plan.ps1`, `run_task.ps1`, `new_run.ps1`, `install.ps1`
+- Scripts copied into the target project's `tools/run-planner/`: `run_plan.ps1`, `run_task.ps1`, `new_run.ps1`, `token_stats.ps1`, `install.ps1`
+- `token_stats.ps1` writes only under the project's `.runlogs/` (the report and an append-only history). It is PowerShell, like the rest of the runner: no extra runtime is needed.
 - Headless sessions use the lean tool set in `runs/runner.json` by default: Bash, PowerShell, Read, Edit, Write, Grep, Glob. A task can request more tools with `**Tools: default**`.
 - Models (defaults, overridable in `runs/runner.json`): `claude-haiku-5-5`, `claude-sonnet-5-5`, `claude-opus-5-5`. Effort: Haiku medium, Sonnet low, Opus default.
 
@@ -52,9 +53,9 @@ Planning never implements tasks. Running is a separate, explicit step.
 - [x] **Add `homepage` and `repository` to `plugin.json`.** Done: homepage, repository and license set.
 - [x] **Align descriptions.** `plugin.json` and the marketplace plugin entry now use the same description.
 - [x] **Platform support.** Windows only. Stated in the requirements and the README.
-- [ ] **Confirm the git behaviour** described under "Permissions and risk disclosure".
+- [x] **Confirm the git behaviour** described under "Permissions and risk disclosure".
 - [ ] **Add a plugin README** if the form requires one. The root README covers the same ground but is written for GitHub.
-- [ ] **Run the installed plugin** from the marketplace once end to end, not only from the repo.
+- [x] **Run the installed plugin** from the marketplace once end to end, not only from the repo.
 
 ## Submission notes for the form (optional text)
 

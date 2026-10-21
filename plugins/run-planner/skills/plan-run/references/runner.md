@@ -97,3 +97,5 @@ The end-of-run summary lists:
 - a table per task of model, minutes, turns, context re-read and cost.
 
 `.runlogs/<run>/usage.csv` has one line per call.
+
+Then `token_stats.ps1` (copied into `tools/run-planner/`) runs once more. It regenerates `.runlogs/token_statistics.md` from every run's `usage.csv`, appends one snapshot per run to `.runlogs/token_history.csv`, and prints any abrupt rise or drop between consecutive runs. It never rewrites the history, and never fails the run.

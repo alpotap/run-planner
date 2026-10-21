@@ -28,7 +28,7 @@ Do this every time, before the first planning step. It is quick when the project
    powershell -NoProfile -ExecutionPolicy Bypass -File "<skill folder>/scripts/install.ps1" -Project .
    ```
 
-   It copies `run_plan.ps1`, `run_task.ps1` and `new_run.ps1` to `tools/run-planner/`, creates `runs/runner.json` and `runs/PROJECT.md` from templates if they are missing, and adds `.runlogs/` to `.gitignore`. It never overwrites `runner.json` or `PROJECT.md`.
+   It copies `run_plan.ps1`, `run_task.ps1`, `new_run.ps1` and `token_stats.ps1` to `tools/run-planner/`, creates `runs/runner.json` and `runs/PROJECT.md` from templates if they are missing, and adds `.runlogs/` to `.gitignore`. It never overwrites `runner.json` or `PROJECT.md`.
 
 2. **Project profile.** `runs/PROJECT.md` holds everything project-specific: repositories, standing "never" rules, test, build, lint and docs commands, environment facts, known failing tests, phase numbering. Every plan copies the facts it needs from here into its tasks. If the file still holds the template, fill it by researching the project (README, CI config, test layout, package manifests, existing `runs/`), then put what you could not prove to the owner as assumptions in the first review round. The structure is in [references/project-profile.md](references/project-profile.md).
 
