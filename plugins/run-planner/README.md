@@ -5,13 +5,13 @@ A Claude Code plugin that plans a project's next unattended run, then runs it ta
 ## What it does
 
 - **Planning.** When you ask Claude to "perform planning on this project", the `plan-run` skill researches the codebase, writes the findings, asks you for owner decisions (D1, D2, ...), and writes `runs/<NNN-name>/PLAN.md`. Each task is sized S, M or L and assigned to Haiku, Sonnet or Opus. Planning never implements tasks.
-- **Running.** `tools/run-planner/run_plan.ps1` runs each open task in its own headless `claude` session, in order. It waits out usage-limit pauses, writes a ledger row per task, and prints the cost per task.
+- **Running.** `tools/run-planner/run_plan.ps1` runs each open task in its own headless `claude` session, in order. It waits out usage-limit pauses, writes a ledger row per task, and prints the cost per task. When the run ends, it also writes token statistics across all runs, with a trend check that flags abrupt changes.
 
 ## What it installs
 
 The first planning session in a project runs `install.ps1`, which copies these into the project:
 
-- `tools/run-planner/`: `run_plan.ps1`, `run_task.ps1`, `new_run.ps1`, `VERSION`
+- `tools/run-planner/`: `run_plan.ps1`, `run_task.ps1`, `new_run.ps1`, `token_stats.ps1`, `VERSION`
 - `runs/runner.json` and `runs/PROJECT.md`, created once and never overwritten
 - a `.runlogs/` line in `.gitignore`
 

@@ -174,3 +174,7 @@ if (Test-Path $csv) {
   Write-Host "`nWhere the time and tokens went (context_M = millions of context tokens re-read):"
   $byTask | Sort-Object context_M -Descending | Format-Table -AutoSize | Out-String -Width 200 | ForEach-Object { Write-Host $_ }
 }
+
+# Token statistics across every run, with a trend check. A failure here never fails the run.
+try { & "$PSScriptRoot\token_stats.ps1" -Repo $Repo }
+catch { Write-Host "Token statistics were not updated: $_" -ForegroundColor DarkYellow }

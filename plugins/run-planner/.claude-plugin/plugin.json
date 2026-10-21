@@ -1,6 +1,6 @@
 {
   "name": "run-planner",
-  "version": "1.0.0",
+  "version": "1.2.1",
   "description": "Takes your idea and codes it for days without human involvement. Best for pro plan that has limits and you want to let it run for days instead of pressing continue every 5 hours.",
   "author": {
     "name": "alpotap"

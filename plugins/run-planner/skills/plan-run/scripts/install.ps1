@@ -5,7 +5,7 @@ param(
 
 # run-planner: puts the runner into a project, or refreshes it there.
 #
-#   tools/run-planner/run_plan.ps1, run_task.ps1, new_run.ps1, VERSION   always replaced
+#   tools/run-planner/run_plan.ps1, run_task.ps1, new_run.ps1, token_stats.ps1, VERSION   always replaced
 #   runs/runner.json                                                      created once, never overwritten
 #   runs/PROJECT.md                                                       created once from the template
 #   runs/browser-mcp.json                                                 created once; the MCP server a task's "Browser" tools use
@@ -18,7 +18,7 @@ $version = (Get-Content (Join-Path $skillDir "VERSION") -TotalCount 1).Trim()
 
 $dest = Join-Path $Project "tools\run-planner"
 New-Item -ItemType Directory -Force -Path $dest | Out-Null
-foreach ($f in "run_plan.ps1", "run_task.ps1", "new_run.ps1") {
+foreach ($f in "run_plan.ps1", "run_task.ps1", "new_run.ps1", "token_stats.ps1") {
   Copy-Item (Join-Path $PSScriptRoot $f) (Join-Path $dest $f) -Force
 }
 Set-Content -Path (Join-Path $dest "VERSION") -Value $version -Encoding ASCII
