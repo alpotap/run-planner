@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blue.svg)](https://claude.ai/code)
-[![Version](https://img.shields.io/badge/version-1.2.1-blue.svg)](plugins/run-planner/skills/plan-run/VERSION)
+[![Version](https://img.shields.io/badge/version-1.3.0-blue.svg)](plugins/run-planner/skills/plan-run/VERSION)
 [![Platform: Windows](https://img.shields.io/badge/platform-Windows-lightgrey.svg)](#requirements)
 [![PowerShell 5.1 | 7](https://img.shields.io/badge/PowerShell-5.1%20%7C%207-5391FE.svg)](#requirements)
 [![GitHub stars](https://img.shields.io/github/stars/alpotap/run-planner?style=flat&logo=github)](https://github.com/alpotap/run-planner/stargazers)
