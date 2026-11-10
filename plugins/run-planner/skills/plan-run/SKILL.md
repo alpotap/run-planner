@@ -25,7 +25,7 @@ Do this every time, before the first planning step. It is quick when the project
 1. **Runner scripts.** Compare `tools/run-planner/VERSION` in the project with `VERSION` in this skill's folder (the base directory shown when the skill loaded). If the project's file is missing or older, run the installer:
 
    ```powershell
-   powershell -NoProfile -ExecutionPolicy Bypass -File "<skill folder>/scripts/install.ps1" -Project .
+   powershell -NoProfile -Command "& ([scriptblock]::Create((Get-Content -Raw '<skill folder>/scripts/install.ps1.txt'))) -SkillDir '<skill folder>' -Project ."
    ```
 
    It copies `run_plan.ps1`, `run_task.ps1`, `new_run.ps1` and `token_stats.ps1` to `tools/run-planner/`, creates `runs/runner.json` and `runs/PROJECT.md` from templates if they are missing, and adds `.runlogs/` to `.gitignore`. It never overwrites `runner.json` or `PROJECT.md`.

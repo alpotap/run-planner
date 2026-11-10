@@ -9,7 +9,7 @@ A Claude Code plugin that plans a project's next unattended run, then runs it ta
 
 ## What it installs
 
-The first planning session in a project runs `install.ps1`, which copies these into the project:
+The first planning session in a project runs `install.ps1.txt` (the plugin ships scripts as text files), which copies them as `.ps1` and these into the project:
 
 - `tools/run-planner/`: `run_plan.ps1`, `run_task.ps1`, `new_run.ps1`, `token_stats.ps1`, `VERSION`
 - `runs/runner.json` and `runs/PROJECT.md`, created once and never overwritten

@@ -28,7 +28,7 @@ Planning never implements tasks. Running is a separate, explicit step.
 ## What the plugin installs and runs
 
 - Skill: `plugins/run-planner/skills/plan-run/` (SKILL.md, references, templates)
-- Scripts copied into the target project's `tools/run-planner/`: `run_plan.ps1`, `run_task.ps1`, `new_run.ps1`, `token_stats.ps1`, `install.ps1`
+- Scripts copied into the target project's `tools/run-planner/`: `run_plan.ps1`, `run_task.ps1`, `new_run.ps1`, `token_stats.ps1` (shipped in the plugin as `.ps1.txt` files, because the directory accepts only text, JSON, YAML, Markdown and image files; `install.ps1.txt` copies them as `.ps1`)
 - `token_stats.ps1` writes only under the project's `.runlogs/` (the report and an append-only history). It is PowerShell, like the rest of the runner: no extra runtime is needed.
 - Headless sessions use the lean tool set in `runs/runner.json` by default: Bash, PowerShell, Read, Edit, Write, Grep, Glob. A task can request more tools with `**Tools: default**`.
 - Models (defaults, overridable in `runs/runner.json`): `claude-haiku-5-5`, `claude-sonnet-5-5`, `claude-opus-5-5`. Effort: Haiku medium, Sonnet low, Opus default.

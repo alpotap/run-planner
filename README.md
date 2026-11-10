@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blue.svg)](https://claude.ai/code)
-[![Version](https://img.shields.io/badge/version-1.3.0-blue.svg)](plugins/run-planner/skills/plan-run/VERSION)
+[![Version](https://img.shields.io/badge/version-1.4.0-blue.svg)](plugins/run-planner/skills/plan-run/VERSION)
 [![Platform: Windows](https://img.shields.io/badge/platform-Windows-lightgrey.svg)](#requirements)
 [![PowerShell 5.1 | 7](https://img.shields.io/badge/PowerShell-5.1%20%7C%207-5391FE.svg)](#requirements)
 [![GitHub stars](https://img.shields.io/github/stars/alpotap/run-planner?style=flat&logo=github)](https://github.com/alpotap/run-planner/stargazers)
@@ -166,7 +166,7 @@ Projects keep their `tools/run-planner/` and `runs/`. They still run without the
 
 | What                                    | Where                                                                |
 | --------------------------------------- | -------------------------------------------------------------------- |
-| Model IDs (next generation)             | `runs/runner.json` → `models`, or defaults in `scripts/run_plan.ps1` |
+| Model IDs (next generation)             | `runs/runner.json` → `models`, or defaults in `scripts/run_plan.ps1.txt` |
 | Effort per model (Sonnet = `low`)       | `runs/runner.json` → `effort`; per-task with `**Effort: medium**`    |
 | Sibling repos a task may edit           | `runs/runner.json` → `addDirs` (relative paths, e.g., `"../engine"`) |
 | Tools installed but off `PATH`          | `runs/runner.json` → `pathAdd`                                       |
@@ -188,7 +188,7 @@ run-planner/                       # repository = marketplace
 │       └── skills/plan-run/
 │           ├── SKILL.md        # Planning process (loads on "perform planning on this project")
 │           ├── VERSION         # Runner version stamped into projects
-│           ├── scripts/        # install.ps1, run_plan.ps1, run_task.ps1, new_run.ps1, token_stats.ps1
+│           ├── scripts/        # install.ps1.txt, run_plan.ps1.txt, run_task.ps1.txt, new_run.ps1.txt, token_stats.ps1.txt (shipped as text, installed as .ps1)
 │           ├── templates/      # PROJECT.md, runner.json for new projects
 │           └── references/     # task-writing, closing-phase, plan-format, runner, project-profile, lessons
 ├── docs/                       # Notes, including the official directory submission draft

@@ -1,9 +1,14 @@
 param(
   # The project to set up. Default: the current directory.
-  [string]$Project = (Get-Location).Path
+  [string]$Project = (Get-Location).Path,
+  # The skill folder (the one holding VERSION, scripts/ and templates/).
+  [Parameter(Mandatory=$true)][string]$SkillDir
 )
 
 # run-planner: puts the runner into a project, or refreshes it there.
+#
+#   Run it as text (the plugin ships scripts as .txt files):
+#     powershell -NoProfile -Command "& ([scriptblock]::Create((Get-Content -Raw '<skill>/scripts/install.ps1.txt'))) -SkillDir '<skill>' -Project ."
 #
 #   tools/run-planner/run_plan.ps1, run_task.ps1, new_run.ps1, token_stats.ps1, VERSION   always replaced
 #   runs/runner.json                                                      created once, never overwritten
@@ -12,14 +17,15 @@ param(
 #   .gitignore                                                            gains .runlogs/ if missing
 
 $ErrorActionPreference = "Stop"
-$skillDir = Split-Path $PSScriptRoot -Parent
+$skillDir = (Resolve-Path $SkillDir).Path
+$scriptsDir = Join-Path $skillDir "scripts"
 $Project = (Resolve-Path $Project).Path
 $version = (Get-Content (Join-Path $skillDir "VERSION") -TotalCount 1).Trim()
 
 $dest = Join-Path $Project "tools\run-planner"
 New-Item -ItemType Directory -Force -Path $dest | Out-Null
 foreach ($f in "run_plan.ps1", "run_task.ps1", "new_run.ps1", "token_stats.ps1") {
-  Copy-Item (Join-Path $PSScriptRoot $f) (Join-Path $dest $f) -Force
+  Copy-Item (Join-Path $scriptsDir "$f.txt") (Join-Path $dest $f) -Force
 }
 Set-Content -Path (Join-Path $dest "VERSION") -Value $version -Encoding ASCII
 
