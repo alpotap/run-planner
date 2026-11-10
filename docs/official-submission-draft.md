@@ -6,7 +6,7 @@ Draft for the plugin directory submission form (https://clau.de/plugin-directory
 
 - **Name (slug, immutable once published):** `run-planner`
 - **Display name:** Run Planner
-- **Version:** 1.0.0 (`plugins/run-planner/.claude-plugin/plugin.json`, `plugins/run-planner/skills/plan-run/VERSION`)
+- **Version:** 1.0.0 (`plugins/run-planner/.claude-plugin/plugin.json`, `plugins/run-planner/skills/plan-run/VERSION.txt`)
 - **Author:** alpotap
 - **License:** MIT (`LICENSE`)
 - **Repository:** https://github.com/alpotap/run-planner

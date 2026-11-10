@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blue.svg)](https://claude.ai/code)
-[![Version](https://img.shields.io/badge/version-1.4.0-blue.svg)](plugins/run-planner/skills/plan-run/VERSION)
+[![Version](https://img.shields.io/badge/version-1.4.1-blue.svg)](plugins/run-planner/skills/plan-run/VERSION.txt)
 [![Platform: Windows](https://img.shields.io/badge/platform-Windows-lightgrey.svg)](#requirements)
 [![PowerShell 5.1 | 7](https://img.shields.io/badge/PowerShell-5.1%20%7C%207-5391FE.svg)](#requirements)
 [![GitHub stars](https://img.shields.io/github/stars/alpotap/run-planner?style=flat&logo=github)](https://github.com/alpotap/run-planner/stargazers)
@@ -144,7 +144,7 @@ claude plugin marketplace update run-planner
 # Replace folder in ~/.claude/skills/run-planner
 ```
 
-Bump `plugins/run-planner/skills/plan-run/VERSION` when scripts change. Next planning session in each project detects the new version and reinstalls `tools/run-planner/`. Never overwrites `runs/runner.json` or `runs/PROJECT.md`.
+Bump `plugins/run-planner/skills/plan-run/VERSION.txt` when scripts change. Next planning session in each project detects the new version and reinstalls `tools/run-planner/`. Never overwrites `runs/runner.json` or `runs/PROJECT.md`.
 
 ---
 
@@ -187,7 +187,7 @@ run-planner/                       # repository = marketplace
 │       │   └── plugin.json     # Plugin manifest
 │       └── skills/plan-run/
 │           ├── SKILL.md        # Planning process (loads on "perform planning on this project")
-│           ├── VERSION         # Runner version stamped into projects
+│           ├── VERSION         # (VERSION.txt) Runner version stamped into projects
 │           ├── scripts/        # install.ps1.txt, run_plan.ps1.txt, run_task.ps1.txt, new_run.ps1.txt, token_stats.ps1.txt (shipped as text, installed as .ps1)
 │           ├── templates/      # PROJECT.md, runner.json for new projects
 │           └── references/     # task-writing, closing-phase, plan-format, runner, project-profile, lessons

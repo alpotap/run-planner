@@ -20,7 +20,7 @@ $ErrorActionPreference = "Stop"
 $skillDir = (Resolve-Path $SkillDir).Path
 $scriptsDir = Join-Path $skillDir "scripts"
 $Project = (Resolve-Path $Project).Path
-$version = (Get-Content (Join-Path $skillDir "VERSION") -TotalCount 1).Trim()
+$version = (Get-Content (Join-Path $skillDir "VERSION.txt") -TotalCount 1).Trim()
 
 $dest = Join-Path $Project "tools\run-planner"
 New-Item -ItemType Directory -Force -Path $dest | Out-Null
